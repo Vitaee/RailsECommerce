@@ -12,6 +12,16 @@
           Today is
           %strong #{Time.now.strftime("%A")}
 
+  .container.col-lg-6
+    = form_with model: @product, class: 'row', url: "/home", method: "get" do |form|
+      .col-sm-3 
+        = form.label "Search By Title"
+        = form.text_field :title , class: "form-control"
+      .col-sm-3 
+        = form.label "Select Brand"
+        = form.select :brand, ['---', 'Apple', 'Samsung'], {}, { :class =>'form-select' }
+      .col-12.mt-2
+        = form.submit "Search", class: "btn btn-info"
   .row.col-lg-12
     - @products.each do |item|
       .card{style: "width: 18rem;"}
