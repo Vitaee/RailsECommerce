@@ -23,7 +23,11 @@ default: &default
 
 development:
   <<: *default
-  database: RubyECommerce_development
+  database:  <%= ENV['DB_NAME'] %>
+  username:  <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

@@ -1,0 +1,27 @@
+%section.vh-100.bg-image{style: "background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');"}
+  .mask.d-flex.align-items-center.h-100.gradient-custom-3
+    .container.h-100
+      .row.d-flex.justify-content-center.align-items-center.h-100
+        .col-12.col-md-9.col-lg-7.col-xl-6
+          .card{style: "border-radius: 15px;"}
+            .card-body.p-5
+              %h2.text-uppercase.text-center.mb-5 Create an account
+              =form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form|
+                %form
+                  .form-outline.mb-4
+                    =form.text_field :username, class: 'form-control form-control-lg', required: 'true'
+                    =form.label "Username", class:'form-label'
+                  .form-outline.mb-4
+                    =form.email_field :email, class: 'form-control form-control-lg'
+                    =form.label "Email", class:'form-label'
+                  .form-outline.mb-4
+                    =form.password_field :password, class: 'form-control form-control-lg'
+                    =form.label "Password", class:'form-label'
+
+                  .d-flex.justify-content-center
+                  =form.button "Register", class: 'btn btn-success btn-block btn-lg gradient-custom-4'
+                  
+                  %p.text-center.text-muted.mt-5.mb-0
+                  Have already an account?
+                  %a.fw-bold.text-body{:href => new_user_session_path}
+                    %u Login here
