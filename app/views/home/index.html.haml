@@ -20,3 +20,4 @@
           %h5.card-title #{item.title}
           %p.card-text #{item.description}
           %a.btn.btn-primary{href: "#"} #{item.price} £
+    != pagy_bootstrap_nav(@pagy)
