@@ -15,11 +15,11 @@
   .container.col-lg-6
     = form_with model: @product, class: 'row', url: "/home", method: "get" do |form|
       .col-sm-3 
-        = form.label "Search By Title"
-        = form.text_field :title , class: "form-control"
+        = form.label "Text Search"
+        = form.text_field :title , class: "form-control", placeholder: "Iphone, laptop, perfume etc."
       .col-sm-3 
         = form.label "Select Brand"
-        = form.select :brand, ['---', 'Apple', 'Samsung'], {}, { :class =>'form-select' }
+        = form.select :brand, ['---', 'Apple', 'Samsung', 'Huawei', 'Oppo'], {}, { :class =>'form-select' }
       .col-12.mt-2
         = form.submit "Search", class: "btn btn-info"
   .row.col-lg-12
@@ -29,5 +29,5 @@
         .card-body
           %h5.card-title #{item.title}
           %p.card-text #{item.description}
-          %a.btn.btn-primary{href: "#"} #{item.price} £
+          = link_to "#{item.price}$", home_path(:id => item.id), class: 'btn btn-primary'
     != pagy_bootstrap_nav(@pagy)

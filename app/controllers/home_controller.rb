@@ -1,11 +1,13 @@
 class HomeController < ApplicationController
+    
     def index
         if params[:title] || params[:brand]
             
             parameter = filter_params
 
             if parameter["title"]
-                @pagy, @products = pagy( Product.search_by_title(parameter["title"]))
+                
+                @pagy, @products = pagy(Product.search_by_title(parameter["title"]))
             else
                 @pagy, @products = pagy( Product.search_by_brand(parameter["brand"])) 
             end
@@ -13,6 +15,10 @@ class HomeController < ApplicationController
         else
             @pagy, @products = pagy(Product.all)
         end
+    end
+
+    def show
+        @item = Product.find(params[:id])
     end
 
 
