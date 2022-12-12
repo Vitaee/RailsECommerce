@@ -1,8 +1,39 @@
-%section.section{:style => "background-color: #eee;"}
-  .row.col-lg-12
-    .card{style: "width: 18rem;"}
-      %img.card-img-top{alt: "...", src: @item.images[0],}
-        .card-body
-          %h5.card-title #{@item.title}
-          %p.card-text #{@item.description}
-          %a.btn.btn-primary{href: "#"} #{@item.price} £
+%body{:style => "background-color: #eee;"}
+  %section.vh-100.gradient-custom-2
+    .container.py-5.h-100
+      .row.d-flex.justify-content-center.align-items-center.h-100
+        .col-md-10.col-lg-8.col-xl-6
+          .card.card-stepper{style: "border-radius: 16px;"}
+            .card-header.p-4
+              .d-flex.justify-content-between.align-items-center
+                %div
+                  %p.text-muted.mb-2
+                    Stock Count:
+                    %span.fw-bold.text-body #{ @item.stock }
+                  %p.text-muted.mb-0
+                    Place On:
+                    %span.fw-bold.text-body #{ @item.created_at }
+                  %p.text-muted.mt-1
+                    Category:
+                    %span.fw-bold.text-body #{ @item.category }
+                %div
+                  %h6.mb-0
+                    %a{href: "#"} Place Order
+            .card-body.p-4
+              .d-flex.flex-row.mb-4.pb-2
+                .flex-fill
+                  %h5.bold #{ @item.title }
+                  %p.text-muted #{ @item.description }
+                  %h4.mb-3
+                    #{@item.price}$
+                    %span.small.text-muted via (COD)
+                  %p.text-muted
+                    Visited on:
+                    %span.text-body #{Time.now.strftime("%H %M")}, #{Time.now.strftime("%A")} 
+                  %p.text-muted
+                    Rating:
+                    %span.text-body #{ @item.rating }
+
+                  = link_to "Go Home", root_path, class: 'btn btn-primary'
+                %div
+                  %img.align-self-center.img-fluid{src: @item.images[0]}
