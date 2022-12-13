@@ -1,0 +1,38 @@
+%body{:style => "background-color: #eee;"}
+  %section.p-4.p-md-5
+    .row.d-flex.justify-content-center
+     
+      .col-md-10.col-lg-8.col-xl-5
+        %h4
+          Hey,
+          #{ current_user.username }
+          %small please fill the form
+        .card.rounded-3
+          .card-body.p-4
+            .text-center.mb-4
+              %h3 #{ @item.title }
+              %h6 
+                Total Price:
+                #{ @item.price }
+                $
+            %form{action: ""}
+              %p.fw-bold.mb-4.pb-2 Enter your credentials:
+              .form-outline.mb-4
+                %input#formControlLgXsd.form-control.form-control-lg{type: "text", value: "Anna Doe"}/
+                %label.form-label{for: "formControlLgXsd"} Cardholder's Name
+              .row.mb-4
+                .col-7
+                  .form-outline
+                    %label Card Number
+                    %input#formControlLgXM.form-control.form-control-lg{type: "text", value: "1234 5678 1234 5678"}/
+                    %img.img-fluid{src: "https://img.icons8.com/color/48/000000/visa.png"}
+                .col-3
+                  .form-outline
+                    %label.form-label{for: "formControlLgExpk"} Expire
+                    %input#formControlLgExpk.form-control.form-control-lg.mb-2{placeholder: "MM/YYYY", type: "password"}/
+                   
+                .col-2
+                  .form-outline
+                    %label.form-label{for: "formControlLgcvv"} Cvv
+                    %input#formControlLgcvv.form-control.form-control-lg{placeholder: "Cvv", type: "password"}/
+              %button.btn.btn-success.btn-lg.btn-block Pay 

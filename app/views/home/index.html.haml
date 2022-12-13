@@ -1,20 +1,18 @@
 %body{:style => "background-color: #eee;"}
-  %section
-    .container.d-flex.justify-content-center
-      
+  %section.p-4.p-md-5
+    .container
       .col-sm
         %h4 
           Welcome,
           %strong #{ current_user.username }
       .col-sm
-        %h3 All Products
-      .col-sm
         %h4
           Today is
           %strong #{Time.now.strftime("%A")}
+      .col-sm
 
     %br
-    .container.d-flex.justify-content-center
+    .container
       .col-lg-8
         = form_with model: @product, class: 'row', url: "/home", method: "get" do |form|
           .col-sm-3
@@ -29,7 +27,7 @@
             = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  
     
     %br
-    .container.d-flex.justify-content-center
+    .container
       .row.col-lg-12
         - @products.each do |item|
           .card{style: "width: 18rem;"}
