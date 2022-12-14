@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   scope :lower_username, -> (username) { where("lower(username) like ?", "%#{username}%")  }
+
+  has_many :product, dependent: :destroy
 end

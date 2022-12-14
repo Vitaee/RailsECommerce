@@ -20,7 +20,7 @@
                     %span.fw-bold.text-body #{ @item.category }
                 %div
                   %h6.mb-0
-                    = link_to "Place Order", edit_home_url(:id => @item.id), class: 'btn btn-primary'
+                    = link_to "Place Order", order_path(:id => @item.id), class: 'btn btn-primary'
             .card-body.p-4
               .d-flex.flex-row.mb-4.pb-2
                 .flex-fill

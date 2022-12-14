@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root to: "home#index"
-  resources :home
+  resources :home, only: [:index, :show]
+  resources :basket, only: [:index]
+
+  get '/order/:id', to: 'order#index', as: 'order'
+  post '/basket', to: "basket#index", as: 'basket'
 
 end

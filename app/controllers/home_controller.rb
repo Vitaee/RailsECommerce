@@ -21,10 +21,6 @@ class HomeController < ApplicationController
         @item = Product.find(params[:id])
     end
 
-    def edit
-        @item = Product.find(params[:id])
-    end
-
 
     private 
 
