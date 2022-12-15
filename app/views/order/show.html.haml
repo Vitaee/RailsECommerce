@@ -6,17 +6,15 @@
         %h4
           Hey,
           #{ current_user.username }
-          %small please fill the form to pay.
+          %small please fill the form
         .card.rounded-3
           .card-body.p-4
-          
             .text-center.mb-4
-              - @basket.each do |item|
-                %h3 #{ item.product.title }
-                %h6 
-                  Total Price:
-                  #{ item.product.price }
-                  $
+              %h3 #{ @item.title }
+              %h6 
+                Total Price:
+                #{ @item.price }
+                $
             %form{action: ""}
               %p.fw-bold.mb-4.pb-2 Enter your credentials:
               .form-outline.mb-4

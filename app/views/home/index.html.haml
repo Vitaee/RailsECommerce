@@ -10,6 +10,7 @@
           Today is
           %strong #{Time.now.strftime("%A")}
       .col-sm
+        = link_to "View Your Basket", basket_index_url, class: 'btn btn-primary'
 
     %br
     .container
@@ -36,6 +37,7 @@
               %h5.card-title #{item.title}
               %p.card-text #{item.description}
               = link_to "#{item.price}$", home_path(:id => item.id), class: 'btn btn-primary'
+              = button_to "Add to Basket",  basket_url(:id => item.id), class: 'btn btn-info'
         != pagy_bootstrap_nav(@pagy)
 
     

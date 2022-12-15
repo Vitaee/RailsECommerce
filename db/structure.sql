@@ -26,6 +26,38 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: baskets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.baskets (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    product_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: baskets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.baskets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: baskets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.baskets_id_seq OWNED BY public.baskets.id;
+
+
+--
 -- Name: pg_search_documents; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -150,6 +182,13 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: baskets id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.baskets ALTER COLUMN id SET DEFAULT nextval('public.baskets_id_seq'::regclass);
+
+
+--
 -- Name: pg_search_documents id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -176,6 +215,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: baskets baskets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.baskets
+    ADD CONSTRAINT baskets_pkey PRIMARY KEY (id);
 
 
 --
@@ -211,6 +258,20 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: index_baskets_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baskets_on_product_id ON public.baskets USING btree (product_id);
+
+
+--
+-- Name: index_baskets_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baskets_on_user_id ON public.baskets USING btree (user_id);
+
+
+--
 -- Name: index_pg_search_documents_on_searchable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -239,6 +300,22 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: baskets fk_rails_5ac9336eee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.baskets
+    ADD CONSTRAINT fk_rails_5ac9336eee FOREIGN KEY (product_id) REFERENCES public.products(id);
+
+
+--
+-- Name: baskets fk_rails_b3d04c10d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.baskets
+    ADD CONSTRAINT fk_rails_b3d04c10d5 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -249,6 +326,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221210135756'),
 ('20221210170351'),
 ('20221212093211'),
-('20221212093411');
+('20221212093411'),
+('20221215123717');
 
 

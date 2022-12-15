@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: "home#index"
   resources :home, only: [:index, :show]
-  resources :basket, only: [:index]
+  resources :order, only: [:index, :show]
 
-  get '/order/:id', to: 'order#index', as: 'order'
-  post '/basket', to: "basket#index", as: 'basket'
+  resources :basket do
+    collection do
+      post '/:id', to: 'basket#create', as: 'basket'
+      delete '/:id', to: 'basket#destroy', as: 'basket_delete'
+    end
+  end
 
 end

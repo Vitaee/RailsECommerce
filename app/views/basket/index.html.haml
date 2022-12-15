@@ -1,0 +1,61 @@
+%body{:style => "background-color: #eee;"}
+  %section.h-100.gradient-custom
+    .container.py-5.h-100
+      .row.d-flex.justify-content-center.align-items-center.h-100
+        .col-lg-10.col-xl-8
+          .card{style: "border-radius: 10px;"}
+            .card-header.px-4.py-5
+              %h5.text-muted.mb-0
+                Here is your basket,
+                %span{style: "color: #a8729a;"} #{current_user.username}
+              = link_to "Place Order", order_index_url, class: 'btn btn-primary'
+            .card-body.p-4
+              .d-flex.justify-content-between.align-items-center.mb-4
+                %p.lead.fw-normal.mb-0{style: "color: #a8729a;"} Receipt
+                %p.small.text-muted.mb-0 Receipt Voucher : 1KAU9-84UIL
+              - @basket.each do | item |  
+                .card.shadow-0.border.mb-4
+                  .card-body
+                    .row
+                      .col-md-2
+                        %img.img-fluid{alt: "Phone", src: "#{item.product.images[0]}"}/
+                      .col-md-2.text-center.d-flex.justify-content-center.align-items-center
+                        %p.text-muted.mb-0 #{ item.product.title }
+                      .col-md-2.text-center.d-flex.justify-content-center.align-items-center
+                        %p.text-muted.mb-0.small Rating: #{ item.product.rating }
+                      .col-md-2.text-center.d-flex.justify-content-center.align-items-center
+                        %p.text-muted.mb-0.small Disc. % #{ item.product.discountPercentage }
+                      .col-md-2.text-center.d-flex.justify-content-center.align-items-center
+                        %p.text-muted.mb-0.small Qty: 1
+                      .col-md-2.text-center.d-flex.justify-content-center.align-items-center
+                        %p.text-muted.mb-0.small#price $ #{ item.product.price }
+                      .col-md-2.text-center.d-flex.justify-content-center.align-items-center
+                        = button_to "Delete",  {:controller => :basket, :action => 'destroy', :id => item.id}, :method => :delete, :class => 'btn btn-danger'
+                %hr.mb-4{style: "background-color: #e0e0e0; opacity: 1;"}/
+
+
+              .d-flex.justify-content-between.pt-2
+                %p.fw-bold.mb-0 Order Details
+                %p.text-muted.mb-0
+                  %span.fw-bold.me-4 Total
+                  $898.00
+              .d-flex.justify-content-between.pt-2
+                %p.text-muted.mb-0 Invoice Number : 788152
+                %p.text-muted.mb-0
+                  %span.fw-bold.me-4 Discount
+                  $19.00
+              .d-flex.justify-content-between
+                %p.text-muted.mb-0 Invoice Date : #{ Time.now.strftime('%Y-%m-%d')}
+                %p.text-muted.mb-0
+                  %span.fw-bold.me-4 GST 18%
+                  123
+              .d-flex.justify-content-between.mb-5
+                %p.text-muted.mb-0 Recepits Voucher : 18KU-62IIK
+                %p.text-muted.mb-0
+                  %span.fw-bold.me-4 Delivery Charges
+                  Free
+            .card-footer.border-0.px-4.py-5{style: "background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"}
+              %h5.d-flex.align-items-center.justify-content-end.text-white.text-uppercase.mb-0
+                Total
+                paid:
+                %span.h2.mb-0.ms-2 $1040
