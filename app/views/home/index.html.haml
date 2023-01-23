@@ -26,8 +26,8 @@
             = form.select :brand, ['---', 'Apple', 'Samsung', 'Huawei', 'Oppo'], {}, { :class =>'form-select' }
           .col-auto.mt-4
             = form.submit "Search", class: "btn btn-info"
-          .col-auto.mt-4
-            = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  
+        .col-auto.mt-4
+          = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'
     
     %br
     .container

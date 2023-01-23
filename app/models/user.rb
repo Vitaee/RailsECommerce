@@ -7,4 +7,6 @@ class User < ApplicationRecord
   scope :lower_username, -> (username) { where("lower(username) like ?", "%#{username}%")  }
 
   has_many :basket
+  has_one_attached :avatar
+
 end

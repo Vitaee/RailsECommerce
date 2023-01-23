@@ -13,14 +13,14 @@
         .card.mb-3{style: "border-radius: .5rem;"}
           .row.g-0
             .col-md-4.gradient-custom.text-center.text-white{style: "border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;"}
-              %img.img-fluid.my-5{alt: "Avatar", src: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp", style: "width: 80px;"}/
-              %h5 Marie Horwitz
+              %img.img-fluid.my-5{alt: "Avatar", src: "#{url_for(current_user.avatar)}", style: "width: 80px;"}/
+              %h5 #{ current_user.email }
               %p #{ current_user.username }
               = link_to "Edit", profile_path(:id => current_user.id), class: 'btn btn-primary'
               = link_to "Go Home", root_path, class: 'btn btn-primary'
             .col-md-8
               .card-body.p-4
-                %h6 Information
+                %h6 Profile Information
                 %hr.mt-0.mb-4/
                 .row.pt-1
                   .col-6.mb-3
@@ -28,20 +28,17 @@
                     %p.text-muted #{ current_user.email }
                   .col-6.mb-3
                     %h6 Phone
-                    %p.text-muted 123 456 789
-                %h6 Projects
-                %hr.mt-0.mb-4/
+                    %p.text-muted #{ current_user.phone }
+
                 .row.pt-1
                   .col-6.mb-3
-                    %h6 Recent
-                    %p.text-muted Lorem ipsum
+                    %h6 Address
+                    %p.text-muted #{ current_user.adress }
                   .col-6.mb-3
-                    %h6 Most Viewed
-                    %p.text-muted Dolor sit amet
+                    %h6 Country
+                    %p.text-muted #{ current_user.country }
                 .d-flex.justify-content-start
                   %a{href: "#!"}
                     %i.fab.fa-facebook-f.fa-lg.me-3
-                  %a{href: "#!"}
-                    %i.fab.fa-twitter.fa-lg.me-3
                   %a{href: "#!"}
                     %i.fab.fa-instagram.fa-lg

@@ -37,10 +37,9 @@
   .row
     .col-md-4.border-right
       .d-flex.flex-column.align-items-center.text-center.p-3.py-5
-        %img.rounded-circle.mt-5{src: "https://thispersondoesnotexist.com/image", width: "90"}/
-        %span.font-weight-bold John Doe
-        %span.text-black-50 john_doe12@bbb.com
-        %span United States
+        %img.rounded-circle.mt-5{src: "#{url_for(current_user.avatar)}", width: "90"}/
+        %span.font-weight-bold #{current_user.username}
+        %span #{current_user.email}
     .col-md-8
       .p-3.py-5
         .d-flex.justify-content-between.align-items-center.mb-3
@@ -48,18 +47,18 @@
             %i.fa.fa-long-arrow-left.mr-1.mb-1
             %h6
               = link_to "Go Home", root_path, class: 'btn btn-primary'
-          %h6.text-right Edit Profile
+          %h6.text-right Update Your Profile
 
         = form_with model: @user, class: 'row gy-2 gx-3 align-items-center', url: profile_path do |form|
           .row.mt-3
             .col-md-6
               =form.text_field :username, class: 'form-control', placeholder: "#{current_user.username}"
             .col-md-6
-              %input.form-control{placeholder: "Phone number", type: "text", value: "+19685969668"}/
+              %input.form-control{placeholder: "Phone number", type: "text", value: "#{current_user.phone}"}/
           .row.mt-3
             .col-md-6
-              %input.form-control{placeholder: "address", type: "text", value: "D-113, right avenue block, CA,USA"}/
+              %input.form-control{placeholder: "address", type: "text", value: "#{current_user.adress}"}/
             .col-md-6
-              %input.form-control{placeholder: "Country", type: "text", value: "USA"}/
+              %input.form-control{placeholder: "Country", type: "text", value: "#{current_user.country}"}/
           .mt-5.text-right
             =button_to "Save Profile", {:controller => "profile",  :action => "update", :id => current_user.id}, :method => :put, class: 'btn btn-info'

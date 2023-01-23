@@ -17,7 +17,18 @@
                   .form-outline.mb-4
                     =form.password_field :password, class: 'form-control form-control-lg'
                     =form.label "Password", class:'form-label'
-
+                  .form-outline.mb-4
+                    =form.file_field :avatar,  accept: 'image/png,image/jpeg,image/jpg', class: 'form-control form-control-lg'
+                    =form.label "Profile Image" , class:'form-label'
+                  .form-outline.mb-4
+                    =form.text_field :adress, class: 'form-control form-control-lg', required: 'true'
+                    =form.label "Home Address", class:'form-label'
+                  .form-outline.mb-4
+                    =form.text_field :phone, class: 'form-control form-control-lg', required: 'true'
+                    =form.label "Phone Number", class:'form-label'
+                  .form-outline.mb-4
+                    =form.text_field :country, class: 'form-control form-control-lg', required: 'true'
+                    =form.label "Your Country", class:'form-label'
                   .d-flex.justify-content-center
                   =form.button "Register", class: 'btn btn-success btn-block btn-lg gradient-custom-4'
                   
