@@ -54,11 +54,11 @@
             .col-md-6
               =form.text_field :username, class: 'form-control', placeholder: "#{current_user.username}"
             .col-md-6
-              %input.form-control{placeholder: "Phone number", type: "text", value: "#{current_user.phone}"}/
+              =form.text_field :phone, class: 'form-control', placeholder: "#{current_user.phone}"
           .row.mt-3
             .col-md-6
-              %input.form-control{placeholder: "address", type: "text", value: "#{current_user.adress}"}/
+              =form.text_field :adress, class: 'form-control', placeholder: "#{current_user.adress}"
             .col-md-6
-              %input.form-control{placeholder: "Country", type: "text", value: "#{current_user.country}"}/
+              =form.text_field :country, class: 'form-control', placeholder: "#{current_user.country}"
           .mt-5.text-right
             =button_to "Save Profile", {:controller => "profile",  :action => "update", :id => current_user.id}, :method => :put, class: 'btn btn-info'
