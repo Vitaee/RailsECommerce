@@ -6,8 +6,12 @@ class ProfileController < ApplicationController
   end
 
   def update
-    current_user.update(profile_update_params)
-    redirect_to "/profile"
+    if current_user.update(profile_update_params.delete_if{ |key,value| value.blank? })
+      redirect_to "/profile" , notice: 'Profile updated'
+    else
+      redirect_to "/"
+    end
+
   end
 
   private
