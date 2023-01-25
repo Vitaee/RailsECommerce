@@ -49,7 +49,7 @@
               = link_to "Go Home", root_path, class: 'btn btn-primary'
           %h6.text-right Update Your Profile
 
-        = form_with model: @user, class: 'row gy-2 gx-3 align-items-center', url: profile_path do |form|
+        = form_with(model: @user, class: 'row gy-2 gx-3 align-items-center', url: profile_index_path) do |form|
           .row.mt-3
             .col-md-6
               =form.text_field :username, class: 'form-control', placeholder: "#{current_user.username}"

@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :profile, only: [:index, :show, :update]
+  put "/profile", to: "profile#update"
 
 end
