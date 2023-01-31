@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resources :home, only: [:index, :show]
-  resources :order, only: [:index, :show]
+  resources :order, only: [:index, :show, :create]
 
   resources :basket do
     collection do

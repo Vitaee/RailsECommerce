@@ -36,7 +36,7 @@
                 .form-outline
                   %label.form-label{for: "formControlLgcvv"} Cvv
                   %input#formControlLgcvv.form-control.form-control-lg{placeholder: "Cvv", type: "password"}/
-            %button.btn.btn-success.btn-lg.btn-block{onclick: "success()"} Pay 
+            = button_to "Pay",  {:controller => :order, :action => 'create', :product_id => @item.id}, :method => :post, :class => 'btn btn-success'
             = link_to "Go Home", root_path, class: 'btn btn-primary'
 
   :javascript
