@@ -157,6 +157,39 @@ ALTER SEQUENCE public.baskets_id_seq OWNED BY public.baskets.id;
 
 
 --
+-- Name: orders; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.orders (
+    id bigint NOT NULL,
+    order_status text,
+    user_id bigint NOT NULL,
+    product_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
+
+--
 -- Name: pg_search_documents; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -313,6 +346,13 @@ ALTER TABLE ONLY public.baskets ALTER COLUMN id SET DEFAULT nextval('public.bask
 
 
 --
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
 -- Name: pg_search_documents id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -371,6 +411,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.baskets
     ADD CONSTRAINT baskets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
 
 
 --
@@ -448,6 +496,20 @@ CREATE INDEX index_baskets_on_user_id ON public.baskets USING btree (user_id);
 
 
 --
+-- Name: index_orders_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_orders_on_product_id ON public.orders USING btree (product_id);
+
+
+--
+-- Name: index_orders_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_orders_on_user_id ON public.orders USING btree (user_id);
+
+
+--
 -- Name: index_pg_search_documents_on_searchable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -508,6 +570,22 @@ ALTER TABLE ONLY public.active_storage_attachments
 
 
 --
+-- Name: orders fk_rails_dfb33b2de0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT fk_rails_dfb33b2de0 FOREIGN KEY (product_id) REFERENCES public.products(id);
+
+
+--
+-- Name: orders fk_rails_f868b47f6a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT fk_rails_f868b47f6a FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -521,6 +599,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221212093411'),
 ('20221215123717'),
 ('20230123141915'),
-('20230123142401');
+('20230123142401'),
+('20230131144324');
 
 
