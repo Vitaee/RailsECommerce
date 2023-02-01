@@ -42,3 +42,14 @@
                     %i.fab.fa-facebook-f.fa-lg.me-3
                   %a{href: "#!"}
                     %i.fab.fa-instagram.fa-lg
+                %h6 Order Information
+                %hr.mt-0.mb-4/
+                .row.pt-1
+                  .col-6.mb-3
+                    %h6 Order Count
+                    %p.text-muted #{ current_user.order.all.count } order
+                  .col-6-mb-3
+                    %h6 Current Order Status
+                    %p.text-muted #{ current_user.order.first.order_status }
+
+
