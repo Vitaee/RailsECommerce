@@ -1,0 +1,80 @@
+%style
+  :plain
+    @import url('https://fonts.googleapis.com/css?family=Assistant');
+    body {
+      background: #eee;
+      font-family: Assistant, sans-serif;
+    }
+
+    .cell-1 {
+      border-collapse: separate;
+      border-spacing: 0 4em;
+      background: #fff;
+      border-bottom: 5px solid transparent;
+      /*background-color: gold;*/
+      background-clip: padding-box;
+    }
+
+    thead {
+      background: #dddcdc;
+    }
+
+    .toggle-btn {
+      width: 40px;
+      height: 21px;
+      background: grey;
+      border-radius: 50px;
+      padding: 3px;
+      cursor: pointer;
+      -webkit-transition: all 0.3s 0.1s ease-in-out;
+      -moz-transition: all 0.3s 0.1s ease-in-out;
+      -o-transition: all 0.3s 0.1s ease-in-out;
+      transition: all 0.3s 0.1s ease-in-out;
+    }
+
+    .toggle-btn > .inner-circle {
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      border-radius: 50%;
+      -webkit-transition: all 0.3s 0.1s ease-in-out;
+      -moz-transition: all 0.3s 0.1s ease-in-out;
+      -o-transition: all 0.3s 0.1s ease-in-out;
+      transition: all 0.3s 0.1s ease-in-out;
+    }
+
+    .toggle-btn.active {
+      background: blue !important;
+    }
+
+    .toggle-btn.active > .inner-circle {
+      margin-left: 19px;
+    }
+.container.mt-5
+  .d-flex.justify-content-center.row
+    .col-md-10
+      %h5 Order details for #{ current_user.username }
+      .rounded
+        .table-responsive.table-borderless
+          %table.table
+            %thead
+              %tr
+                %th Order #
+                %th Company Name
+                %th Product Name
+                %th status
+                %th Total
+                %th Created
+                %th
+            %tbody.table-body
+              - current_user.order.all.each do |item|
+                %tr.cell-1
+                  %td #{ item.id }
+                  %td #{ item.product.brand }
+                  %td #{ item.product.title }
+                  %td #{ item.order_status }
+                  %td $ #{ item.product.price }
+                  %td #{ item.created_at.strftime('%a, %d %b %Y %H:%M:%S') }
+                  %td
+                    %i.fa.fa-ellipsis-h.text-black-50
+        = link_to "Go Back", profile_index_url, class: 'btn btn-primary'

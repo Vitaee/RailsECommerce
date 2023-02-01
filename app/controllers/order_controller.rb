@@ -29,4 +29,8 @@ class OrderController < ApplicationController
         current_user.basket.all.destroy_all
         redirect_to "/", notice: 'Products successfully ordered!'
     end
+
+    def order_details
+        render "details"
+    end
 end

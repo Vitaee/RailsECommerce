@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "home#index"
+
+  get "/order/details/" , to: "order#order_details"
+
   resources :home, only: [:index, :show]
   resources :order, only: [:index, :show, :create]
 

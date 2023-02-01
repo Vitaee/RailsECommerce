@@ -47,9 +47,10 @@
                 .row.pt-1
                   .col-6.mb-3
                     %h6 Order Count
-                    %p.text-muted #{ current_user.order.all.count } order
-                  .col-6-mb-3
-                    %h6 Current Order Status
-                    %p.text-muted #{ current_user.order.first.order_status }
+                    %p.text-muted
+                      #{ current_user.order.all.count } order,
+                      = link_to "see details", order_path(:details)
+
+
 
 
