@@ -1,12 +1,16 @@
 # Ruby on Rails E-Commerce Project
-A basic e-commerce web site built with rails and haml with bootstrap and postgresql for database. 
-Created this project with this command line ( yarn & node should be installed in your system):
+A basic e-commerce web site built with rails framework and for front-end haml used with bootstrap, postgresql used for  the database service. 
+From beginning i created this project with this command line ( yarn & node should be installed in your system):
 - ```rails new RubyECommerce --css=bootstrap --database=postgresql```
 
 ### This project currently have these pages:
 - User login & register pages
 - Home page which all products listed.
 - Deatil page of product.
+- User's basket page
+- Payment page ( payment backend not implemented yet. )
+- Order details page
+- User profile and update profile page
 - ... will be updated.
 
 
@@ -26,6 +30,14 @@ Created this project with this command line ( yarn & node should be installed in
     - Then create our database using docker exec.
     - ```sudo docker exec -it some-postgres psql -U postgres -c "create database time_management_development"``` 
 
+* Database Structure
+  - There are;
+    - user
+    - basket
+    - order
+    - product tables
+  - user have many to many relationship with order and basket.
+  - basket and order tables have one-to-one relationship with product. 
 
 * Configuration
     - create ```.env``` file in project root. Copy .env.example and change values according to yours.
@@ -38,7 +50,9 @@ Created this project with this command line ( yarn & node should be installed in
     - pagy used for pagination.
     - pg_search postgreSQL full text search library for rails.
     - devise for user auth.
-    - docker for creating database service, may used for dockerizing the project.
+    - aws s3 bucket configured for this project.
+    - docker for creating database service.
+    - Docker-compoese may used for dockerizing the project.
 
 * Deployment instructions
     - ... will be updated.
