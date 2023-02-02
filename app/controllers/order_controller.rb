@@ -20,7 +20,7 @@ class OrderController < ApplicationController
 
         if params[:product_id]
             @order = current_user.order.create(user_id:current_user.id, product_id:params[:product_id], order_status:"Pending")
-            redirect_to "/", notice: 'Product successfully ordered!'
+            redirect_to "/", notice: 'Product successfully ordered!' and return
         end
 
         current_user.basket.all.each do |item|

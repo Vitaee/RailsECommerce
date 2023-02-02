@@ -16,8 +16,13 @@
               %img.img-fluid.my-5{alt: "Avatar", src: "#{url_for(current_user.avatar)}", style: "width: 80px;"}/
               %h5 #{ current_user.email }
               %p #{ current_user.username }
-              = link_to "Edit", profile_path(:id => current_user.id), class: 'btn btn-primary'
-              = link_to "Go Home", root_path, class: 'btn btn-primary'
+              = link_to profile_path(:id => current_user.id), class: 'btn btn-primary' do
+                %i.bi.bi-pencil-square
+                  Edit
+              &nbsp
+              = link_to root_path, class: 'btn btn-primary' do
+                %i.bi.bi-house-door-fill
+                  Home
             .col-md-8
               .card-body.p-4
                 %h6 Profile Information

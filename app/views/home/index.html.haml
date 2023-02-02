@@ -11,9 +11,11 @@
             Today is
             %strong #{Time.now.strftime("%A")}
         .col-sm
-          = link_to "View Your Basket", basket_index_url, class: 'btn btn-primary'
-        .col-sm
-          = link_to "My Profile", profile_index_url, class: 'btn btn-info'
+          = link_to basket_index_url do
+            %i.bi.bi-basket3{class: 'btn btn-primary'}
+            &nbsp
+          = link_to profile_index_url do
+            %i.bi.bi-person-circle{class: 'btn btn-info'}
 
     %br
     .col-lg-12
@@ -26,9 +28,14 @@
             = form.label "Select Brand"
             = form.select :brand, ['---', 'Apple', 'Samsung', 'Huawei', 'Oppo'], {}, { :class =>'form-select' }
           .col-auto.mt-4
-            = form.submit "Search", class: "btn btn-info"
+            = form.button class: 'btn btn-success' do
+              %i.bi.bi-search
+                Search
+
         .col-auto.mt-4
-          = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'
+          = button_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
+            %i.bi.bi-box-arrow-in-left
+              Sign out
     
     %br
     .container.col-lg-12{:style=> "max-width:1520px;"}
@@ -40,7 +47,10 @@
               %h5.card-title #{item.title}
               %p.card-text #{item.description}
               = link_to "#{item.price}$", home_path(:id => item.id), class: 'btn btn-primary'
-              = button_to "Add to Basket",  basket_url(:id => item.id), class: 'btn btn-info'
+              = button_to  basket_url(:id => item.id), class: 'btn btn-info' do
+                %i.bi.bi-bag-plus-fill
+                  Add to basket
+
         != pagy_bootstrap_nav(@pagy)
 
     
