@@ -45,20 +45,24 @@
         .d-flex.justify-content-between.align-items-center.mb-3
           .d-flex.flex-row.align-items-center.back
             %i.fa.fa-long-arrow-left.mr-1.mb-1
-            %h6
-              = link_to "Go Home", root_path, class: 'btn btn-primary'
+
           %h6.text-right Update Your Profile
 
         = form_with(model: @user, class: 'row gy-2 gx-3 align-items-center', url: profile_index_path) do |form|
           .row.mt-3
             .col-md-6
+              =form.label "Username", class: 'form-label'
               =form.text_field :username, class: 'form-control', placeholder: "#{current_user.username}"
             .col-md-6
+              =form.label "Phone Number", class: 'form-label'
               =form.text_field :phone, class: 'form-control', placeholder: "#{current_user.phone}"
           .row.mt-3
             .col-md-6
+              =form.label "Address", class: 'form-label'
               =form.text_field :adress, class: 'form-control', placeholder: "#{current_user.adress}"
             .col-md-6
+              =form.label "Country", class: 'form-label'
               =form.text_field :country, class: 'form-control', placeholder: "#{current_user.country}"
           .mt-5.text-right
             =button_to "Save Profile", {:controller => "profile",  :action => "update", :id => current_user.id}, :method => :put, class: 'btn btn-info'
+            = link_to "Go Home", root_path, class: 'btn btn-primary'

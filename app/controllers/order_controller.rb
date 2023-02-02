@@ -31,6 +31,7 @@ class OrderController < ApplicationController
     end
 
     def order_details
+        @pagy, @user_orders = pagy(current_user.order.all)
         render "details"
     end
 end

@@ -1,22 +1,23 @@
 %body{:style => "background-color: #eee;"}
   %section.p-4.p-md-5
-    .container
-      .col-sm
-        %h4 
-          Welcome,
-          %strong #{ current_user.username }
-      .col-sm
-        %h4
-          Today is
-          %strong #{Time.now.strftime("%A")}
-      .col-sm
-        = link_to "View Your Basket", basket_index_url, class: 'btn btn-primary'
-      .col-sm
-        = link_to "My Profile", profile_index_url, class: 'btn btn-info'
+    .col-lg-12
+      .container{:style=> "max-width:1530px;"}
+        .col-sm
+          %h4
+            Welcome,
+            %strong #{ current_user.username }
+        .col-sm
+          %h4
+            Today is
+            %strong #{Time.now.strftime("%A")}
+        .col-sm
+          = link_to "View Your Basket", basket_index_url, class: 'btn btn-primary'
+        .col-sm
+          = link_to "My Profile", profile_index_url, class: 'btn btn-info'
 
     %br
-    .container
-      .col-lg-8
+    .col-lg-12
+      .container{:style=> "max-width:1530px;"}
         = form_with model: @product, class: 'row', url: "/home", method: "get" do |form|
           .col-sm-3
             = form.label "Text Search"
@@ -30,8 +31,8 @@
           = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'
     
     %br
-    .container
-      .row.col-lg-12
+    .container.col-lg-12{:style=> "max-width:1520px;"}
+      .row
         - @products.each do |item|
           .card{style: "width: 18rem;"}
             %img.card-img-top{alt: "...", src: item.images[0],}

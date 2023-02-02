@@ -53,7 +53,9 @@
 .container.mt-5
   .d-flex.justify-content-center.row
     .col-md-10
-      %h5 Order details for #{ current_user.username }
+      %h5
+        Order history table for
+        %strong #{ current_user.username }
       .rounded
         .table-responsive.table-borderless
           %table.table
@@ -62,12 +64,12 @@
                 %th Order #
                 %th Company Name
                 %th Product Name
-                %th status
+                %th Status
                 %th Total
-                %th Created
+                %th Created At
                 %th
             %tbody.table-body
-              - current_user.order.all.each do |item|
+              - @user_orders.each do |item|
                 %tr.cell-1
                   %td #{ item.id }
                   %td #{ item.product.brand }
@@ -77,4 +79,5 @@
                   %td #{ item.created_at.strftime('%a, %d %b %Y %H:%M:%S') }
                   %td
                     %i.fa.fa-ellipsis-h.text-black-50
+        != pagy_bootstrap_nav(@pagy)
         = link_to "Go Back", profile_index_url, class: 'btn btn-primary'

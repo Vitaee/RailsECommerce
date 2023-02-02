@@ -42,14 +42,15 @@
                     %i.fab.fa-facebook-f.fa-lg.me-3
                   %a{href: "#!"}
                     %i.fab.fa-instagram.fa-lg
-                %h6 Order Information
+                %h6 Order History
                 %hr.mt-0.mb-4/
                 .row.pt-1
                   .col-6.mb-3
                     %h6 Order Count
                     %p.text-muted
-                      #{ current_user.order.all.count } order,
-                      = link_to "see details", order_path(:details)
+                      #{ current_user.order.all.count } order
+                      - if current_user.order.all.count > 1
+                        = link_to "see details", order_path(:details)
 
 
 
