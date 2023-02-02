@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-product = Product.create(
-    [
+product = Product.create([
       {
         "title":"OPPOF19",
         "description":"OPPO F19 is officially announced on April 2021.",
@@ -79,25 +78,83 @@ product = Product.create(
         "images":["https://i.dummyjson.com/data/products/10/1.jpg",
                  "https://i.dummyjson.com/data/products/10/2.jpg","https://i.dummyjson.com/data/products/10/3.jpg",
                  "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"]
+      },
+      {
+        "title": "iPhone 9",
+        "description": "An apple mobile which is nothing like apple",
+        "price": 549,
+        "discountPercentage": 12.96,
+        "rating": 4.69,
+        "stock": 94,
+        "brand": "Apple",
+        "category": "smartphones",
+        "images": [
+          "https://i.dummyjson.com/data/products/1/1.jpg",
+          "https://i.dummyjson.com/data/products/1/2.jpg",
+          "https://i.dummyjson.com/data/products/1/3.jpg",
+          "https://i.dummyjson.com/data/products/1/4.jpg",
+          "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+        ]
+      },
+      {
+        "title": "iPhone X",
+        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+        "price": 899,
+        "discountPercentage": 17.94,
+        "rating": 4.44,
+        "stock": 34,
+        "brand": "Apple",
+        "category": "smartphones",
+        "images": [
+          "https://i.dummyjson.com/data/products/2/1.jpg",
+          "https://i.dummyjson.com/data/products/2/2.jpg",
+          "https://i.dummyjson.com/data/products/2/3.jpg",
+          "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+        ]
+      },
+      {
+        "title": "Samsung Universe 9",
+        "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+        "price": 1249,
+        "discountPercentage": 15.46,
+        "rating": 4.09,
+        "stock": 36,
+        "brand": "Samsung",
+        "category": "smartphones",
+        "images": [
+          "https://i.dummyjson.com/data/products/3/1.jpg"
+        ]
       }
-]
-)
+                         ])
 
 p "Created #{product.count} Products"
 
 
-users = User.create([{
-    username: "Joe",
-    email: "joe@gmail.com",
-    password: "123456",
-},
-{
-    username: "Doe",
-    email: "doe@gmail.com",
-    password: "123456",
-}])
+User.create(
+  username: "Joe",
+  email: "joe@gmail.com",
+  password: "123456",
+  adress: "Some Street Name",
+  phone: "+90432134551",
+  country: "CY"
+)
 
+User.create(
+  username: "Doe",
+  email: "doe@gmail.com",
+  password: "123456",
+  adress: "Other Street Name",
+  phone: "+90235784954",
+  country: "TR"
+)
 
+user = User.find(1)
+user.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'images.png')), filename: 'images.png', content_type: 'image/png')
+user.save
 
-p "Created #{users.count} Users"
+user = User.find(2)
+user.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'images.png')), filename: 'images.png', content_type: 'image/png')
+user.save
+
+p "Created #{User.all.count} Users"
 p "Login as a user with these credentials: email: joe@gmail.com , password: 123456"
