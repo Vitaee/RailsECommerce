@@ -4,8 +4,18 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "/order/details/" , to: "order#order_details"
+  
+  resources :home do
+    resources :comments
+  end
 
-  resources :home, only: [:index, :show]
+  resources :comments do
+    resources :comments
+  end
+
+  post '/comments/:id', to: 'comments#create_reply'
+
+  #resources :home, only: [:index, :show]
   resources :order, only: [:index, :show, :create]
 
   resources :basket do

@@ -157,6 +157,39 @@ ALTER SEQUENCE public.baskets_id_seq OWNED BY public.baskets.id;
 
 
 --
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id bigint NOT NULL,
+    body text,
+    product_id integer,
+    user_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
+
+
+--
 -- Name: orders; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -264,6 +297,39 @@ ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
 
 
 --
+-- Name: replies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.replies (
+    id bigint NOT NULL,
+    reply_body text,
+    comment_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: replies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.replies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: replies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.replies_id_seq OWNED BY public.replies.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -346,6 +412,13 @@ ALTER TABLE ONLY public.baskets ALTER COLUMN id SET DEFAULT nextval('public.bask
 
 
 --
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
 -- Name: orders id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -364,6 +437,13 @@ ALTER TABLE ONLY public.pg_search_documents ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
+
+
+--
+-- Name: replies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.replies ALTER COLUMN id SET DEFAULT nextval('public.replies_id_seq'::regclass);
 
 
 --
@@ -414,6 +494,14 @@ ALTER TABLE ONLY public.baskets
 
 
 --
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -435,6 +523,14 @@ ALTER TABLE ONLY public.pg_search_documents
 
 ALTER TABLE ONLY public.products
     ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: replies replies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.replies
+    ADD CONSTRAINT replies_pkey PRIMARY KEY (id);
 
 
 --
@@ -524,6 +620,20 @@ CREATE INDEX index_products_on_searchable ON public.products USING gin (searchab
 
 
 --
+-- Name: index_replies_on_comment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_replies_on_comment_id ON public.replies USING btree (comment_id);
+
+
+--
+-- Name: index_replies_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_replies_on_user_id ON public.replies USING btree (user_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -535,6 +645,14 @@ CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- Name: replies fk_rails_256e4b72c5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.replies
+    ADD CONSTRAINT fk_rails_256e4b72c5 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -578,6 +696,14 @@ ALTER TABLE ONLY public.orders
 
 
 --
+-- Name: replies fk_rails_f13795d06e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.replies
+    ADD CONSTRAINT fk_rails_f13795d06e FOREIGN KEY (comment_id) REFERENCES public.comments(id);
+
+
+--
 -- Name: orders fk_rails_f868b47f6a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -600,6 +726,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221215123717'),
 ('20230123141915'),
 ('20230123142401'),
-('20230131144324');
+('20230131144324'),
+('20230210065629'),
+('20230210070438'),
+('20230210080620');
 
 

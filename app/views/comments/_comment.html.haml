@@ -1,0 +1,23 @@
+%li
+  = comment.body
+  \-
+  %small
+    Submitted #{time_ago_in_words(comment.created_at)} ago
+    \- By #{comment.user.username}
+  
+  - if comment.reply.all.count >= 1
+    %br
+    %br
+    %bold 
+      Replies
+      - comment.reply.all.each do |replies|
+        %li
+          #{ replies.reply_body }
+  
+  = form_for [comment, Reply.new], url: comment_path do |f|
+    = f.text_area :reply_body, placeholder: "Add a Reply"
+    %br/
+    
+    = f.submit "Reply"
+      
+  %hr  

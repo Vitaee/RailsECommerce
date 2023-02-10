@@ -18,6 +18,9 @@ class HomeController < ApplicationController
     end
 
     def show
+        @com = Comment.find(2)
+        puts @com.reply
+        puts "^^^^^^^^^^^^^^^^^"
         @item = Product.find(params[:id])
     end
 

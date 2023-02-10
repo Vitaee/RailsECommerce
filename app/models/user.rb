@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :basket
   has_many :order
+  has_many :comment
+  has_many :reply
   has_one_attached :avatar
 
 end

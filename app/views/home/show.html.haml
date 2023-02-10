@@ -3,7 +3,7 @@
     .container.py-5.h-100
       
       .row.d-flex.justify-content-center.align-items-center.h-100
-        .col-md-10.col-lg-8.col-xl-6
+        .col-md-10.col-lg-8.col-xl-8
           .h4 Detail Page
           .card.card-stepper{style: "border-radius: 16px;"}
             .card-header.p-4
@@ -39,3 +39,15 @@
                   = link_to "Go Home", root_path, class: 'btn btn-primary'
                 %div
                   %img.align-self-center.img-fluid{src: @item.images[0]}
+              
+              .container
+                %h3.bold Comments
+                = form_for(Comment.new) do |f|
+                  = f.text_area :body, placeholder: "Add Comment"
+                  = f.hidden_field :user, value: current_user.id
+                  = f.hidden_field :product, value: @item.id
+                  = f.submit
+
+                %ul
+                  =render(partial: 'comments/comment', collection: @item.comment)
+                 
